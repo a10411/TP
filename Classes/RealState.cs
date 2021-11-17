@@ -7,13 +7,12 @@
 *	<description></description>
 **/
 using System;
+using System.Collections;
 
 namespace Classes
 {   
     
-    enum Type { APRTMNT, HOUSE, LAND}; // Type of Property
-    enum State {FS, NFS }; // State of Property: For Sale, Not For Sale (adquired, or simply nfs) 
-
+   
     /// <summary>
     /// Purpose:
     /// Created by: nfrv9
@@ -24,9 +23,12 @@ namespace Classes
     public class RealState
     {
         #region Attributes
-
+        public enum Type { LAND, APRTMNT, HOUSE }; // Type of Property
+        public enum State { FS, NFS }; // State of Property: For Sale, Not For Sale (adquired, or simply nfs) 
+        Type t;
         static int totalRS;
-        static Property[] properties;
+        DateTime aquisitionDate;
+
 
 
         #endregion
@@ -40,12 +42,39 @@ namespace Classes
         /// </summary>
         public RealState()
         {
-
+            aquisitionDate = DateTime.Today;
+            t = Type.LAND;
+            totalRS++;
         }
 
+        public RealState(Type t, DateTime d, Decimal p)
+        {
+            this.t = t;
+            aquisitionDate = d;
+ 
+        }
         #endregion
 
         #region Properties
+
+        public Type T
+        {
+            get { return t; }
+            set { t = value; }
+        }
+
+        public DateTime ConstructionYear
+        {
+            get { return aquisitionDate; }
+            set { aquisitionDate = value; }
+        }
+
+        public int TotalRS
+        {
+            get { return totalRS; }
+        }
+
+       
         #endregion
 
 
